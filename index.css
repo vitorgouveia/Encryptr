@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --vermelho-etec: #820024;
+    --laranja-etec: #f68b37;
+    --neumorphism-shadow: -6px -6px 18px rgba(255, 255, 255, 0.3),
+        6px 6px 18px rgba(0, 0, 0, 0.16);
+    --dark-neumorphism-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05),
+        5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #dedede;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    border-radius: 12px;
+    padding: 2%;
+    margin: 2% 0;
+    align-items: center;
+    background: #fff;
+    box-shadow: var(--neumorphism-shadow);
+}
+
+main h1 {
+    font: bold 4vmin "Roboto Condensed", sans-serif;
+    color: var(--vermelho-etec);
+    text-shadow: var(--neumorphism-shadow);
+    margin: 0 0 1% 0;
+}
+
+main .widget-covid {
+    display: flex;
+    width: 95%;
+    border-radius: 12px;
+    flex-direction: row;
+    background: #128C7E;
+    padding: 2% 6%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--neumorphism-shadow);
+}
+
+main .widget-covid:hover {
+    box-shadow: inset -6px -6px 18px rgba(255, 255, 255, 0.3),
+    inset 6px 6px 18px rgba(0, 0, 0, 0.16);
+}
+
+main .widget-covid h2 {
+    font: bold 3vmin "Roboto Condensed", sans-serif;
+    text-align: center;
+    color: #fff;
+    margin: 0 2%;
+}
+
+main .widget-covid .virus {
+    margin: 0 2%;
+}
+
+main #separador {
+    width: 95%;
+    padding: 2px;
+    border-radius: 12px;
+    margin: 2% 0;
+    background: var(--vermelho-etec);
+}
+
+main .widget-natal {
+    display: flex;
+    background: #E40010;
+    flex-direction: row;
+    width: 95%;
+    padding: 2% 0;
+    margin: 0 0 2% 0;
+    border-radius: 12px;
+    box-shadow: var(--neumorphism-shadow);
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+main .widget-natal:hover {
+    box-shadow: inset -6px -6px 18px rgba(255, 255, 255, 0.3),
+    inset 6px 6px 18px rgba(0, 0, 0, 0.16);;
+}
+
+main .widget-natal h1 {
+    font: bold 3.5vmin "Roboto Condensed", sans-serif;
+    color: #fff;
+    margin: 0;
+}
+
+main .widget-natal svg {
+    width: 8vmin;
+}
+
+main .licoes {
+    width: 95%;
+    margin: 2% 0;
+    padding: 4% 0;
+    display: flex;
+    background: #fff;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: var(--neumorphism-shadow);
+}
+
+main .licoes h1 {
+    font: bold 10vmin "Roboto Condensed", sans-serif;
+    text-shadow: var(--neumorphism-shadow);
+}
+
+main .licoes h2 {
+    font: bold 5vmin "Roboto Condensed", sans-serif;
+    color: var(--vermelho-etec);
+    text-shadow: var(--neumorphism-shadow);
+    margin: 0 0 2% 0;
+}
+
+main .licoes .card {
+    display: flex;
+    flex-direction: row;
+    margin: 4% 0;
+    width: 80%;
+    padding: 2%;
+    border-radius: 12px;
+    box-shadow: var(--neumorphism-shadow);
+}
+
+main .licoes .card:hover {
+    box-shadow: inset -6px -6px 18px rgba(255, 255, 255, 0.3),
+    inset 6px 6px 18px rgba(0, 0, 0, 0.16);;
+}
+
+main .licoes .card .barra {
+    width: 1%;
+    border-radius: 3px;
+    margin: 0 2% 0 0;
+    background: yellowgreen;
+}
+
+main .licoes .card .content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+main .licoes .card .content .row {
+    display: flex;
+    align-items: center;
+    flex-direction: row; 
+}
+
+main .licoes .card .content .row1 {
+    justify-content: space-between;
+    margin: 0 0 1% 0;
+}
+
+main .licoes .card .content .row1 .x:hover {
+    cursor: pointer;
+}
+
+main .licoes .card .content .row h1 {
+    margin: 0;
+    color: #000;
+    font: bold 3vmin "Roboto Condensed", sans-serif;
+}
+
+main .licoes .card .content .row2 h1 {
+    color: var(--vermelho-etec);
+    margin: 0 2% 0 0;
+    cursor: pointer;
+}
+
+main .licoes .card .content .row .etecSvg {
+    width: 3vmin;
+    cursor: pointer;
+}
+
+main .licoes .card .content .row2 {
+    margin: 1% 0;
+}
+
+main .licoes .card .content .row3 {
+    margin: 1% 0 0 0;
+}
+
+main .licoes .licaoText {
+    text-align: center;
+    margin: 2% 0 0 0;
+    font: bold 5vmin "Roboto Condensed", sans-serif;
+}
+
+main .licoes input {
+    width: 45%;
+    outline: none;
+    border: none;
+    margin: 2% 0;
+    font-weight: bold;
+    font-size: 2vmin;
+    padding: 2%;
+    color: #999999;
+    border-radius: 12px;
+    box-shadow: inset -6px -6px 18px rgba(255, 255, 255, 0.3),
+    inset 6px 6px 18px rgba(0, 0, 0, 0.16);
+}
+
+main .licoes button {
+    border: 5px solid var(--vermelho-etec);
+    background: none;
+    width: 45%;
+    margin: 1% 0;
+    padding: 1%;
+    font: bold 2vmin "Roboto Condensed", sans-serif;
+    border-radius: 12px;
+    color: var(--vermelho-etec);
+    box-shadow: -6px -6px 18px rgba(255, 255, 255, 0.3),
+    6px 6px 18px rgba(0, 0, 0, 0.16);
+}
+
+main .licoes button:hover {
+    box-shadow: inset -6px -6px 18px rgba(255, 255, 255, 0.3),
+    inset 6px 6px 18px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+}
