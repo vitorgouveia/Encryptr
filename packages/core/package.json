@@ -1,0 +1,7 @@
+{
+  "name": "@encryptr/core",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "yarn@3.2.0",
+  "main": "./src/index.ts"
+}
