@@ -89,6 +89,74 @@ type ZenitProps = {
   keys: string[];
 };
 
+const check = (
+  set: string,
+  character: string,
+  keys: string[],
+  index: number
+) => {
+  const currentCharIndex = [...set].indexOf(character);
+
+  const setOfChars = keys[index - 1];
+
+  const isLastPlace = index === keys.length - 1;
+
+  if (!setOfChars) {
+    if (!isLastPlace) {
+      // this one is the first
+      let final = [...keys[index + 1]][currentCharIndex];
+
+      keys.forEach((set2, j) => {
+        if (j > index) {
+          if (set.includes(final)) {
+            final = check(set2, final, keys, index);
+            // const charIndex = [...set].indexOf(final);
+            // const setOf
+
+            // final = [...set2][charIndex];
+            // return;
+          }
+          final = final;
+          // final = [...set][currentCharIndex];
+          // final = check(set, final, keys, index);
+          return;
+        }
+      });
+
+      return final;
+    }
+
+    return [...keys[index + 1]][currentCharIndex];
+  }
+
+  if (!isLastPlace) {
+    // this one is in the middle
+    // run through the other stuff
+    let final = [...setOfChars][currentCharIndex];
+
+    keys.forEach((set2, j) => {
+      if (j > index) {
+        if (set.includes(final)) {
+          final = check(set2, final, keys, index);
+          // const charIndex = [...set].indexOf(final);
+          // const setOf
+
+          // final = [...set2][charIndex];
+          // return;
+        }
+        final = final;
+        // final = [...set][currentCharIndex];
+        // final = check(set, final, keys, index);
+        return;
+      }
+    });
+
+    return final;
+  }
+
+  return [...setOfChars][currentCharIndex];
+};
+
 class Zenit implements ICryptography {
   private keys: string[];
 
@@ -106,16 +174,7 @@ class Zenit implements ICryptography {
 
       keys.forEach((set, index) => {
         if (set.includes(character)) {
-          const currentCharIndex = [...set].indexOf(character);
-
-          const setOfChars = keys[index - 1];
-
-          if (!setOfChars) {
-            newChar = [...keys[index + 1]][currentCharIndex];
-            return;
-          }
-
-          newChar = [...setOfChars][currentCharIndex];
+          newChar = check(set, character, keys, index);
         }
       });
 
@@ -123,26 +182,27 @@ class Zenit implements ICryptography {
         return character;
       }
 
-      const zenit = "zenit";
-      const polar = "polar";
+      // const zenit = "zenit";
+      // const polar = "polar";
 
       /**
        * v i
        * [z, e, n, i, t] -
-       *
-       * [j, u, d, a, s] -
+       *           -
        * [p, o, l, a, r]
+       * a
+       * [a, b, r, e , u]
        */
 
-      if (zenit.includes(character)) {
-        const currentIndexInZenit = [...zenit].indexOf(character);
-        return [...polar][currentIndexInZenit];
-      }
+      // if (zenit.includes(character)) {
+      //   const currentIndexInZenit = [...zenit].indexOf(character);
+      //   return [...polar][currentIndexInZenit];
+      // }
 
-      if (polar.includes(character)) {
-        const currentIndexInPolar = [...polar].indexOf(character);
-        return [...zenit][currentIndexInPolar];
-      }
+      // if (polar.includes(character)) {
+      //   const currentIndexInPolar = [...polar].indexOf(character);
+      //   return [...zenit][currentIndexInPolar];
+      // }
 
       return newChar;
     });
@@ -176,7 +236,7 @@ const rot = new ROT({
 });
 
 const zenit = new Zenit({
-  keys: ["zenit", "polar"],
+  keys: ["zenit", "judas", "polar", "abreu", "gabriel"],
 });
 
 const ROTEncrypter = new Encrypter(rot);
