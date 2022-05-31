@@ -1,0 +1,62 @@
+@use "./project/colors.scss";
+@use "./project/size-scale.scss";
+
+:root {
+  --ifm-color-primary-lightest: var(--color-primary-300);
+  --ifm-color-primary-lighter: var(--color-primary-400);
+  --ifm-color-primary-light: var(--color-primary-500);
+  --ifm-color-primary: var(--color-primary-600);
+  --ifm-color-primary-dark: var(--color-primary-700);
+  --ifm-color-primary-darker: var(--color-primary-800);
+  --ifm-color-primary-darkest: var(--color-primary-900);
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-background-color: var(--color-gray-200);
+  --ifm-navbar-background-color: var(--color-gray-100);
+
+  footer {
+    --ifm-footer-background-color: var(--color-gray-100);
+    --ifm-footer-color: var(--color-gray-800);
+
+    * {
+      color: var(--color-gray-800);
+    }
+
+    .footer__copyright {
+      a {
+        color: var(--color-primary-500);
+      }
+    }
+  }
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary-lightest: var(--color-primary-200);
+  --ifm-color-primary-lighter: var(--color-primary-300);
+  --ifm-color-primary-light: var(--color-primary-400);
+  --ifm-color-primary: var(--color-primary-500);
+  --ifm-color-primary-dark: var(--color-primary-600);
+  --ifm-color-primary-darker: var(--color-primary-700);
+  --ifm-color-primary-darkest: var(--color-primary-800);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --ifm-background-color: var(--color-gray-900);
+  --ifm-navbar-background-color: var(--color-gray-800);
+
+  footer {
+    --ifm-footer-background-color: var(--color-gray-800);
+    --ifm-footer-color: var(--color-gray-300);
+
+    * {
+      color: var(--color-gray-200);
+    }
+
+    .footer__copyright {
+      a {
+        color: var(--color-primary-500);
+      }
+    }
+  }
+}
