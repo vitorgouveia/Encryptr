@@ -40,14 +40,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/VitorGouveia/Encryptr/tree/main/packages/docs/templates/shared/",
+            "https://github.com/VitorGouveia/Encryptr/blob/main/packages/docs",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/VitorGouveia/Encrtyptr/tree/main/packages/docs/templates/shared/",
+            "https://github.com/VitorGouveia/Encryptr/blob/main/packages/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
