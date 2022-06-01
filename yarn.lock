@@ -2449,7 +2449,9 @@ __metadata:
     "@nuxtjs/stylelint-module": ^4.1.0
     "@storybook/addon-essentials": ^6.5.6
     "@storybook/addon-notes": ^5.3.21
+    "@storybook/addons": ^6.5.6
     "@storybook/core-client": ^6.5.6
+    "@storybook/theming": ^6.5.6
     "@storybook/vue": ^6.5.6
     "@vitejs/plugin-vue": ^2.3.3
     babel-loader: ^8.2.5
@@ -3749,7 +3751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addons@npm:6.5.6":
+"@storybook/addons@npm:6.5.6, @storybook/addons@npm:^6.5.6":
   version: 6.5.6
   resolution: "@storybook/addons@npm:6.5.6"
   dependencies:
@@ -4572,7 +4574,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/theming@npm:6.5.6":
+"@storybook/theming@npm:6.5.6, @storybook/theming@npm:^6.5.6":
   version: 6.5.6
   resolution: "@storybook/theming@npm:6.5.6"
   dependencies:
