@@ -51,7 +51,6 @@ jobs:
       - name: Move storybook inside web build
         working-directory: ./packages/web
         run: |
-          mkdir ./dist/docs
           mv ./storybook ./dist
 
       - name: Deploy to github pages
