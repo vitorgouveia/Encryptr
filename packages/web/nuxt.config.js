@@ -42,6 +42,9 @@ const config = {
     '@nuxtjs/stylelint-module',
     '@nuxt/postcss8',
   ],
+  router: {
+    base: '/Encryptr/',
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
