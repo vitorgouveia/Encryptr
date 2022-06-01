@@ -39,6 +39,7 @@
     "@storybook/addon-notes": "^5.3.21",
     "@storybook/addons": "^6.5.6",
     "@storybook/core-client": "^6.5.6",
+    "@storybook/core-server": "^6.5.6",
     "@storybook/theming": "^6.5.6",
     "@storybook/vue": "^6.5.6",
     "@vitejs/plugin-vue": "^2.3.3",

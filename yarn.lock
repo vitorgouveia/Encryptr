@@ -2451,6 +2451,7 @@ __metadata:
     "@storybook/addon-notes": ^5.3.21
     "@storybook/addons": ^6.5.6
     "@storybook/core-client": ^6.5.6
+    "@storybook/core-server": ^6.5.6
     "@storybook/theming": ^6.5.6
     "@storybook/vue": ^6.5.6
     "@vitejs/plugin-vue": ^2.3.3
@@ -4161,7 +4162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/core-server@npm:6.5.6":
+"@storybook/core-server@npm:6.5.6, @storybook/core-server@npm:^6.5.6":
   version: 6.5.6
   resolution: "@storybook/core-server@npm:6.5.6"
   dependencies:
