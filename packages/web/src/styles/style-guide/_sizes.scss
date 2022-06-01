@@ -1,0 +1,8 @@
+$size-base: 8;
+$size-step: 8;
+
+:root {
+  @for $i from 0 through 8 {
+    --size-#{($i + 1) * 100}: #{$size-base + $i * $size-step}px;
+  }
+}

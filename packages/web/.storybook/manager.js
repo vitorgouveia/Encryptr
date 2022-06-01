@@ -1,34 +1,38 @@
 import { addons } from '@storybook/addons'
 import { create } from '@storybook/theming'
 
+const gray_700 = '#323843'
+const gray_900 = '#121317'
+const primary_500 = '#4D69A3'
+
 addons.setConfig({
   theme: create({
     base: 'dark',
 
-    colorPrimary: '#252329',
-    colorSecondary: '#5B3A9C',
+    colorPrimary: gray_700,
+    colorSecondary: primary_500,
 
-    appBg: '#0F0E11',
-    appContentBg: '#252329',
-    appBorderColor: '#5B3A9C',
+    appBg: gray_900,
+    appContentBg: gray_700,
+    appBorderColor: primary_500,
     appBorderRadius: 0,
 
     fontBase: '"JetBrains Mono", sans-serif',
     fontCode: 'monospace',
 
-    textColor: '#C5C2CB',
-    textInverseColor: '#0F0E11',
+    textColor: '#DFE2E7',
+    textInverseColor: '#121317',
 
-    barTextColor: '#3C3842',
-    barSelectedColor: '#5B3A9C',
+    barTextColor: '#7F8A9F',
+    barSelectedColor: primary_500,
     barBg: '#0F0E11',
 
-    inputBg: '#252329',
-    inputBorder: '#686374',
-    inputTextColor: '#9691A1',
+    inputBg: gray_700,
+    inputBorder: '#4B5363',
+    inputTextColor: '#BFC4CF',
     inputBorderRadius: 0,
 
-    brandTitle: 'PasswordGenerator',
+    brandTitle: 'Encryptr',
     brandUrl: 'https://github.com/vitorGouveia/PasswordGenerator',
     brandTarget: '_self',
   }),
