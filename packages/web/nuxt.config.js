@@ -1,5 +1,4 @@
 // @ts-check
-
 /** @type {import("@nuxt/types").NuxtConfig} */
 const config = {
   // Target: https://go.nuxtjs.dev/config-target
@@ -59,9 +58,18 @@ const config = {
   build: {},
 
   storybook: {
-    stories: ['./**/*.stories.@(js|ts|md|mdx|vue)'],
+    stories: ['~/**/*.stories.@(js|ts|md|mdx)'],
     port: 6006,
     addons: ['@storybook/addon-essentials', '@storybook/addon-notes'],
+    parameters: {
+      backgrounds: {
+        default: 'white',
+        values: [
+          { name: 'white', value: '#ff0000' },
+          { name: 'gray', value: '#aaaaaa' },
+        ],
+      },
+    },
   },
 }
 
