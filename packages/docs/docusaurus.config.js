@@ -11,7 +11,7 @@ const config = {
   title: "Encryptr",
   tagline: "🛡️ Next-level encrypting software.",
   url: "https://vitorgouveia.github.io/Encryptr",
-  baseUrl: "/",
+  baseUrl: "/Encryptr/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
