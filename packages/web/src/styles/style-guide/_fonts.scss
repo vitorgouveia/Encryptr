@@ -48,6 +48,84 @@ small {
   font-size: var(--font-size-100);
 }
 
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (min-width: 600px) {
+  h1 {
+    font-size: var(--font-size-700);
+  }
+
+  h2 {
+    font-size: var(--font-size-600);
+  }
+
+  h3 {
+    font-size: var(--font-size-500);
+  }
+
+  h4 {
+    font-weight: 400;
+    font-size: var(--font-size-400);
+  }
+
+  h5 {
+    font-weight: 400;
+    font-size: var(--font-size-300);
+  }
+
+  h6 {
+    font-weight: 400;
+    font-size: var(--font-size-200);
+  }
+
+  p {
+    font-weight: 300;
+    font-size: var(--font-size-200);
+  }
+
+  small {
+    font-weight: 300;
+    font-size: var(--font-size-100);
+  }
+}
+
+@media screen and (max-width: 428px) {
+  h1 {
+    font-size: var(--font-size-600);
+  }
+
+  h2 {
+    font-size: var(--font-size-500);
+  }
+
+  h3 {
+    font-size: var(--font-size-400);
+  }
+
+  h4 {
+    font-size: var(--font-size-300);
+  }
+
+  h5 {
+    font-size: var(--font-size-300);
+  }
+
+  h6 {
+    font-size: var(--font-size-200);
+  }
+
+  p {
+    font-weight: 300;
+    font-size: var(--font-size-200);
+  }
+
+  small {
+    font-weight: 300;
+    font-size: var(--font-size-100);
+  }
+}
+
 .bold {
   font-weight: bold;
 }
