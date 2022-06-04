@@ -1,0 +1,47 @@
+:root {
+  --font-size-base: 20;
+  --font-size-step: 4;
+
+  @for $i from 0 through 7 {
+    // prettier-ignore
+    --font-size-#{($i + 1) * 100}: calc((var(--font-size-step) * #{$i} + var(--font-size-base)) * 1px);
+  }
+}
+
+h1 {
+  font-size: var(--font-size-800);
+}
+
+h2 {
+  font-size: var(--font-size-700);
+}
+h3 {
+  font-size: var(--font-size-600);
+}
+h4 {
+  font-size: var(--font-size-500);
+}
+h5 {
+  font-size: var(--font-size-400);
+}
+h6 {
+  font-size: var(--font-size-300);
+}
+p {
+  font-size: var(--font-size-200);
+}
+small {
+  font-size: var(--font-size-100);
+}
+
+.weight-bold {
+  font-weight: 700;
+}
+
+.weight-normal {
+  font-weight: 400;
+}
+
+.weight-light {
+  font-weight: 300;
+}

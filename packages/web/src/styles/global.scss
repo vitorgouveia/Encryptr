@@ -1,19 +1,28 @@
-@use './reset';
+@use "./project/colors.scss";
+@use "./project/font-size.scss";
+@use "./project/size-scale.scss";
 
-@use './style-guide/colors';
-@use './style-guide/sizes';
-@use './style-guide/fonts';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html,
 body {
-  font-family: 'Oxygen', Arial, Helvetica, sans-serif;
+  font-family: "Oxygen", sans-serif;
 
   color: var(--color-gray-100);
   background: var(--color-gray-900);
 }
 
-:root {
-  --desktop-max-width: calc(1600px - 72px * 2);
-  --tablet-max-width: calc(1024px - 64px * 2);
-  --mobile-max-width: calc(428px - 32px * 2);
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
 }

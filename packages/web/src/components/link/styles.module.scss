@@ -1,0 +1,15 @@
+.link {
+  color: inherit;
+  font-weight: 400;
+  font-size: var(--font-size-200);
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: wavy underline;
+  }
+
+  &:visited {
+    color: var(--color-primary-500);
+  }
+}

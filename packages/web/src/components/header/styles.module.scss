@@ -1,0 +1,125 @@
+.header {
+  width: 100%;
+  background: var(--color-gray-800);
+
+  nav {
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: var(--size-400) 0;
+
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--size-300);
+
+      a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    section {
+      width: 250px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
+    .menuToggle {
+      display: none;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: calc(100% - 72px * 2);
+      padding: var(--size-400) 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .logo {
+        width: max-content;
+      }
+    }
+
+    @media screen and (min-width: 428px) {
+      width: calc(100% - var(--size-600) * 2);
+      padding: var(--size-400) 0;
+    }
+
+    @media screen and (max-width: 428px) {
+      width: 100%;
+      padding: var(--size-400);
+
+      ul {
+        display: none;
+      }
+
+      .ctas {
+        display: none;
+      }
+
+      h3 {
+        display: none;
+      }
+
+      .menuToggle {
+        display: flex;
+
+        background: transparent;
+        cursor: pointer;
+      }
+
+      position: relative;
+
+      .mobileMenu {
+        position: absolute;
+
+        background: var(--color-gray-800);
+
+        left: 0px;
+        height: 0px;
+
+        width: 100%;
+        height: max-content;
+        padding: var(--size-400);
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: var(--size-600);
+
+        ul {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .ctas {
+          display: flex !important;
+          flex-direction: column;
+
+          gap: var(--size-200);
+
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

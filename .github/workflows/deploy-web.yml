@@ -36,7 +36,11 @@ jobs:
 
       - name: Build web
         working-directory: ./packages/web
-        run: yarn generate
+        run: yarn gh-build
+
+      - name: Export web
+        working-directory: ./packages/web
+        run: yarn export
 
       - name: Build storybook
         working-directory: ./packages/web
