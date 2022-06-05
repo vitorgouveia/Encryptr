@@ -7,6 +7,7 @@ type LinkProps = {
   label?: string;
   children: React.ReactNode;
   global?: boolean;
+  className?: string;
 };
 
 export const Link: React.FC<LinkProps> = ({
@@ -14,14 +15,15 @@ export const Link: React.FC<LinkProps> = ({
   children,
   label,
   global = false,
+  className = "",
 }) => {
   return global ? (
-    <NextLink href={href}>
-      <a className={styles.link}>{label || children}</a>
-    </NextLink>
-  ) : (
-    <a href={href} className={styles.link}>
+    <a href={href} className={`${styles.link} ${className}`}>
       {label || children}
     </a>
+  ) : (
+    <NextLink href={href}>
+      <a className={`${styles.link} ${className}`}>{label || children}</a>
+    </NextLink>
   );
 };

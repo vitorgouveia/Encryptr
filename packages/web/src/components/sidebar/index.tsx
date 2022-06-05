@@ -11,30 +11,33 @@ import { Files } from "../../icon/files";
 import { Profile } from "../../icon/profile";
 import { Star } from "../../icon/star";
 
+import styles from "./styles.module.scss";
+import { Cog } from "../../icon/cog";
+
 export const Sidebar: React.FC = () => {
   const isLessThanDesktop = useMediaQuery({
     query: "(max-width: 1024px)",
   });
 
   return (
-    <nav>
+    <nav className={styles.sidebar}>
       {!isLessThanDesktop && (
         <>
           <Brand colors={defaultColorScheme} variant="full" />
 
-          <section>
-            <div className="image">
+          <section className={styles.profile}>
+            <div className={styles.image}>
               <img
                 src={`https://avatars.dicebear.com/api/identicon/${10}.svg`}
                 alt="legend"
               />
+            </div>
 
-              <div>
-                <Heading variant="small">Hello 👋</Heading>
-                <Heading variant="text" weight="bold">
-                  @{"vitor"}
-                </Heading>
-              </div>
+            <div>
+              <Heading variant="small">Hello 👋</Heading>
+              <Heading variant="text" weight="bold">
+                @{"vitor"}
+              </Heading>
             </div>
           </section>
         </>
@@ -49,14 +52,31 @@ export const Sidebar: React.FC = () => {
             title="Files"
             href="/dashboard/files"
             icon={<Files />}
-            dropdown={true}
+            dropdown={
+              <>
+                <Link className={styles.filesDropdownItem} href="/file/xyz">
+                  <Heading variant="text">File 1</Heading>
+                  <button className={styles.cog}>
+                    <Cog />
+                  </button>
+                </Link>
+                <Link className={styles.filesDropdownItem} href="/file/xyz">
+                  <Heading variant="text">File 2</Heading>
+                  <button className={styles.cog}>
+                    <Cog />
+                  </button>
+                </Link>
+              </>
+            }
           />
         </li>
         {isLessThanDesktop && (
           <li>
-            <Link href="/">
-              <Brand colors={defaultColorScheme} variant="icon" />
-            </Link>
+            <Item
+              title="Home"
+              href="/"
+              icon={<Brand colors={defaultColorScheme} variant="icon" />}
+            />
           </li>
         )}
         <li>
