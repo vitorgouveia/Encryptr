@@ -1,10 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import { useContext } from "react";
+import { useRouter } from "next/router";
 import { useMediaQuery } from "react-responsive";
 
 import { Brand, defaultColorScheme } from "../brand";
 import { Heading } from "../heading";
 import { Item } from "./item";
 import { Link } from "../link";
+
+import { AuthContext } from "../../context/auth";
 
 import { Database } from "../../icon/database";
 import { Files } from "../../icon/files";
@@ -15,6 +19,9 @@ import styles from "./styles.module.scss";
 import { Cog } from "../../icon/cog";
 
 export const Sidebar: React.FC = () => {
+  const router = useRouter();
+
+  const { user } = useContext(AuthContext);
   const isLessThanDesktop = useMediaQuery({
     query: "(max-width: 1024px)",
   });
@@ -28,7 +35,7 @@ export const Sidebar: React.FC = () => {
           <section className={styles.profile}>
             <div className={styles.image}>
               <img
-                src={`https://avatars.dicebear.com/api/identicon/${10}.svg`}
+                src={`https://avatars.dicebear.com/api/initials/${user?.username}.svg`}
                 alt="legend"
               />
             </div>
@@ -36,7 +43,7 @@ export const Sidebar: React.FC = () => {
             <div>
               <Heading variant="small">Hello 👋</Heading>
               <Heading variant="text" weight="bold">
-                @{"vitor"}
+                @{user && user.username}
               </Heading>
             </div>
           </section>
@@ -45,10 +52,16 @@ export const Sidebar: React.FC = () => {
 
       <ul>
         <li>
-          <Item title="Profile" href="/dashboard/profile" icon={<Profile />} />
+          <Item
+            active={router.asPath === "/dashboard/profile"}
+            title="Profile"
+            href="/dashboard/profile"
+            icon={<Profile />}
+          />
         </li>
         <li>
           <Item
+            active={router.asPath === "/dashboard"}
             title="Files"
             href="/dashboard/files"
             icon={<Files />}
@@ -73,6 +86,7 @@ export const Sidebar: React.FC = () => {
         {isLessThanDesktop && (
           <li>
             <Item
+              active={router.asPath === "/"}
               title="Home"
               href="/"
               icon={<Brand colors={defaultColorScheme} variant="icon" />}
@@ -80,10 +94,20 @@ export const Sidebar: React.FC = () => {
           </li>
         )}
         <li>
-          <Item title="Starred" href="/dashboard/starred" icon={<Star />} />
+          <Item
+            active={router.asPath === "/dashboard/starred"}
+            title="Starred"
+            href="/dashboard/starred"
+            icon={<Star />}
+          />
         </li>
         <li>
-          <Item title="My Data" href="/dashboard/data" icon={<Database />} />
+          <Item
+            active={router.asPath === "/dashboard/data"}
+            title="My Data"
+            href="/dashboard/data"
+            icon={<Database />}
+          />
         </li>
       </ul>
     </nav>

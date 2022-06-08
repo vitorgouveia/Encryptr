@@ -49,7 +49,10 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       localStorage.getItem("@encryptr:users") || "[]"
     ) as User[];
     setUsers(localUsers);
-  }, []);
+
+    const loggedUser = localStorage.getItem("@encryptr:logged-user-id");
+    setCurrentUser(users.find((user) => user.id === loggedUser) || null);
+  }, [users]);
 
   const handleRegister = useCallback(
     async ({

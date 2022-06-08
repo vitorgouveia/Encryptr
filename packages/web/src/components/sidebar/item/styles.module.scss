@@ -30,6 +30,11 @@
     --base-color: var(--color-gray-100);
   }
 
+  &[data-active="true"] {
+    --foreground-color: var(--color-gray-800);
+    --base-color: var(--color-gray-100);
+  }
+
   &[data-dropdown="true"] {
     // padding: 0 !important;
 

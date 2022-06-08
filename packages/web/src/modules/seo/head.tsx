@@ -2,12 +2,15 @@ import NextHead from "next/head";
 
 type HeadProps = {
   title: string;
+  defaultTitle?: string;
 };
 
-const Head: React.FC<HeadProps> = ({ title }) => {
+const Head: React.FC<HeadProps> = ({ title, defaultTitle = "Encryptr" }) => {
   return (
     <NextHead>
-      <title>{title} - Encryptr</title>
+      <title>
+        {title} - {defaultTitle}
+      </title>
     </NextHead>
   );
 };
