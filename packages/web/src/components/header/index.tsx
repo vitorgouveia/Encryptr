@@ -25,7 +25,7 @@ const links: Link[] = [
   },
   {
     label: "Docs",
-    href: "/docs",
+    href: "/Encryptr/docs",
     global: true,
   },
 ];

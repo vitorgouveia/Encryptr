@@ -162,7 +162,7 @@ const links: Link[] = [
   },
   {
     icon: <Storybook />,
-    href: "/storybook",
+    href: "/Encryptr/storybook",
     global: true,
   },
 ];
