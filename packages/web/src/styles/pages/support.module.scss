@@ -1,0 +1,114 @@
+.hero {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--size-200);
+  padding: var(--size-800);
+
+  background: var(--color-gray-800);
+
+  .title {
+    text-align: center;
+    color: var(--color-gray-100);
+  }
+
+  .description {
+    text-align: center;
+    color: var(--color-gray-300);
+  }
+}
+
+.list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  gap: var(--size-600);
+  padding: var(--size-800) var(--size-900);
+
+  section {
+    width: 100%;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--size-200);
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-100);
+
+    width: 100%;
+
+    details {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      summary {
+        display: flex;
+
+        cursor: pointer;
+        user-select: none;
+      }
+
+      section {
+        margin-top: var(--size-100);
+        border-radius: var(--size-100);
+        border: 4px solid var(--color-gray-500);
+        padding: var(--size-200);
+
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-200);
+
+        a {
+          color: var(--color-gray-100);
+        }
+      }
+    }
+  }
+
+  .cardTitle {
+    color: var(--color-gray-100);
+  }
+
+  .cardLink {
+    display: flex;
+    align-items: center;
+
+    gap: var(--size-100);
+
+    color: var(--color-gray-400);
+
+    &:hover,
+    &:focus {
+      color: var(--color-gray-100);
+
+      svg path {
+        stroke: var(--color-gray-100);
+      }
+    }
+
+    // cog
+    svg {
+      transform: rotate(90deg);
+
+      path {
+        stroke: var(--color-gray-400);
+      }
+    }
+  }
+}

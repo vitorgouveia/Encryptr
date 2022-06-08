@@ -2,14 +2,22 @@
   width: 100%;
   background: var(--color-gray-800);
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--size-400) 0;
+
+  @media screen and (max-width: 600px) {
+    padding: var(--size-400);
+  }
+
   nav {
     margin: 0 auto;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: var(--size-400) 0;
 
     ul {
       display: flex;
@@ -48,7 +56,7 @@
 
     @media screen and (min-width: 1024px) {
       width: calc(100% - 72px * 2);
-      padding: var(--size-400) 0;
+      // padding: var(--size-400) 0;
     }
 
     @media screen and (max-width: 1024px) {
@@ -59,12 +67,11 @@
 
     @media screen and (min-width: 428px) {
       width: calc(100% - var(--size-600) * 2);
-      padding: var(--size-400) 0;
+      // padding: var(--size-400) 0;
     }
 
-    @media screen and (max-width: 428px) {
+    @media screen and (max-width: 600px) {
       width: 100%;
-      padding: var(--size-400);
 
       ul {
         display: none;
@@ -85,15 +92,14 @@
         cursor: pointer;
       }
 
-      position: relative;
-
       .mobileMenu {
         position: absolute;
 
         background: var(--color-gray-800);
 
         left: 0px;
-        height: 0px;
+        right: 0px;
+        // height: 0px;
 
         width: 100%;
         height: max-content;
@@ -103,6 +109,8 @@
         align-items: center;
         flex-direction: column;
         gap: var(--size-600);
+
+        z-index: 10;
 
         ul {
           display: flex;

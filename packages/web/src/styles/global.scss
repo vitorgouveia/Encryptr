@@ -8,11 +8,23 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: "Oxygen", sans-serif;
 
   color: var(--color-gray-100);
   background: var(--color-gray-900);
+}
+
+#__next {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
 ul {

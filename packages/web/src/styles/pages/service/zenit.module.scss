@@ -1,0 +1,47 @@
+.form {
+  display: flex;
+  align-items: center;
+  gap: var(--size-100);
+
+  button {
+    height: 63px;
+    // margin-bottom: var(--size-100);
+  }
+}
+
+.tagList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--size-100);
+
+  li {
+    width: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-100);
+
+    border-radius: var(--size-100);
+
+    padding: var(--size-100) var(--size-200);
+    background: var(--color-gray-900);
+
+    button {
+      background: transparent;
+      padding: var(--size-100);
+
+      svg {
+        color: var(--color-gray-100);
+      }
+
+      &:hover,
+      &:focus {
+        svg {
+          color: var(--color-red-500);
+        }
+      }
+    }
+  }
+}

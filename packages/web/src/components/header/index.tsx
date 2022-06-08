@@ -1,4 +1,5 @@
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useState } from "react";
+import { useRouter } from "next/router";
 import { useMediaQuery } from "react-responsive";
 
 import { Brand, defaultColorScheme } from "../brand";
@@ -7,28 +8,61 @@ import { Link } from "../link";
 
 import styles from "./styles.module.scss";
 
-const Links = () => (
-  <ul>
-    <li>
-      <Link href="/services">Services</Link>
-    </li>
-    <li>
-      <Link href="/docs">Docs</Link>
-    </li>
-  </ul>
-);
+type Link = {
+  label: string;
+  href: string;
+  global?: boolean;
+};
+
+const links: Link[] = [
+  {
+    label: "Services",
+    href: "/services",
+  },
+  {
+    label: "Support",
+    href: "/support",
+  },
+  {
+    label: "Docs",
+    href: "/docs",
+    global: true,
+  },
+];
+
+const Links = () => {
+  const router = useRouter();
+
+  return (
+    <ul>
+      {links.map(({ label, href, global }) => (
+        <li key={href}>
+          <Link
+            global={global}
+            active={router.asPath.includes(href)}
+            href={href}
+          >
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const CTAs = () => (
   <section className={styles.ctas}>
-    <Button variant="primary">Login</Button>
-    <Button variant="outlined">Register</Button>
+    <Link href="/login">
+      <Button variant="primary">Login</Button>
+    </Link>
+    <Link href="/register">
+      <Button variant="outlined">Register</Button>
+    </Link>
   </section>
 );
 
 export const Header: React.FC = () => {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  const navElement = useRef<HTMLDivElement>(null);
-
   const isTablet = useMediaQuery({
     query: "(max-width: 1024px) and (min-width: 428px)",
   });
@@ -39,7 +73,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <nav ref={navElement}>
+      <nav>
         <section className={styles.logo}>
           <Link href="/">
             <Brand
@@ -87,7 +121,9 @@ export const Header: React.FC = () => {
 
         {isMobileMenuOpened && (
           <div
-            style={{ top: navElement.current?.clientHeight }}
+            style={{
+              top: "116px",
+            }}
             className={styles.mobileMenu}
           >
             <Links />

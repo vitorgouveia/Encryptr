@@ -163,7 +163,7 @@ const links: Link[] = [
   {
     icon: <Storybook />,
     href: "/storybook",
-    global: false,
+    global: true,
   },
 ];
 

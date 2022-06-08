@@ -3,13 +3,17 @@
   font-weight: 400;
   font-size: var(--font-size-200);
 
+  &[data-active="true"] {
+    color: var(--color-primary-400);
+  }
+
   &:hover,
   &:focus,
   &:active {
     text-decoration: wavy underline;
   }
 
-  &:visited {
+  &:not([data-active]):visited {
     color: var(--color-primary-500);
   }
 }

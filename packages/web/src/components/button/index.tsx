@@ -16,7 +16,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <button {...props} data-variant={variant} className={styles.button}>
+    <button data-variant={variant} className={styles.button} {...props}>
       <strong>{label || children}</strong>
     </button>
   );

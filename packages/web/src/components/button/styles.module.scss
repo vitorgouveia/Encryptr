@@ -10,6 +10,11 @@
 
   transition: all 200ms;
 
+  &:disabled {
+    cursor: not-allowed;
+    filter: opacity(50%);
+  }
+
   &[data-variant="primary"] {
     background: var(--color-primary-700);
 

@@ -1,0 +1,133 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--size-200);
+  padding-top: var(--size-600);
+  padding-bottom: calc(var(--size-900) * 2);
+
+  background-image: url("/lock.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0% 35%;
+
+  position: relative;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    background: hsla(0, 0%, 0%, 0.63);
+
+    z-index: 0;
+  }
+
+  h1 {
+    text-align: center;
+    z-index: 2;
+    color: var(--color-gray-100);
+  }
+
+  h4 {
+    width: 60%;
+
+    color: var(--color-gray-300);
+    text-align: center;
+    z-index: 2;
+  }
+
+  small {
+    z-index: 2;
+
+    a {
+      color: var(--color-gray-300) !important;
+    }
+
+    position: absolute;
+    right: var(--size-300);
+    bottom: var(--size-900);
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: var(--size-900);
+
+    h4 {
+      width: 100%;
+    }
+
+    small {
+      bottom: var(--size-300);
+    }
+  }
+}
+
+.serviceList {
+  width: 90%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  gap: var(--size-200);
+
+  transform: translateY(-48px);
+
+  border-radius: var(--size-100);
+  background: var(--color-gray-900);
+
+  padding: var(--size-400);
+  padding-top: calc(var(--size-900) + var(--size-100));
+
+  li {
+    background: var(--color-gray-800);
+    border-radius: var(--size-100);
+    padding: var(--size-200);
+    gap: var(--size-200);
+
+    width: 290px;
+    height: 200px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    display: flex;
+    flex-direction: column;
+
+    small {
+      color: var(--color-gray-300);
+      text-align: center;
+    }
+
+    a {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    transform: translateY(0px);
+
+    flex-direction: column;
+
+    li {
+      max-width: 400px;
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 428px) {
+  }
+}

@@ -6,6 +6,8 @@ import {
   useImperativeHandle,
   SetStateAction,
   Dispatch,
+  useEffect,
+  InputHTMLAttributes,
 } from "react";
 import { nanoid } from "nanoid";
 
@@ -13,7 +15,9 @@ import styles from "./styles.module.scss";
 
 type State = "error" | "warning" | "success" | "focused" | "none";
 
-type InputProps = {
+type Type = "text" | "password" | "email" | "number";
+
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   placeholder: string;
   label?: string;
   disabled?: boolean;
@@ -21,40 +25,62 @@ type InputProps = {
   message?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  type?: "text" | "password";
+  variant?: "input" | "textarea";
+  type?: Type;
+  value?: string | number;
+  handleInputChange?: (
+    event: InputEvent | ChangeEvent<HTMLTextAreaElement>
+  ) => void;
 };
 
 export interface InputHandles {
+  type: Type;
+  value: string;
+
   setState: Dispatch<SetStateAction<State>>;
   setValue: Dispatch<SetStateAction<string>>;
   setMessage: Dispatch<SetStateAction<string>>;
+  setType: Dispatch<SetStateAction<Type>>;
+  setDisabled: Dispatch<SetStateAction<boolean>>;
 }
 
 type InputEvent = ChangeEvent<HTMLInputElement>;
 
 const Input: React.ForwardRefRenderFunction<InputHandles, InputProps> = (
   {
+    variant = "input",
     placeholder,
-    disabled,
+    disabled: Disabled = false,
     message: Message = "",
     state: State = "none",
     label,
     rightIcon,
     leftIcon,
-    type = "text",
+    type: Type = "text",
+    handleInputChange: handleChange,
+    style,
     ...props
   },
   ref
 ) => {
+  const [disabled, setDisabled] = useState(Disabled);
   const [value, setValue] = useState("");
   const [state, setState] = useState<State>(State);
   const [message, setMessage] = useState(Message);
+  const [type, setType] = useState(Type);
+  const [id, setId] = useState<string | null>(null);
 
-  const id = nanoid(6);
-
-  const handleInputChange = useCallback((event: InputEvent) => {
-    setValue(event.target.value);
+  useEffect(() => {
+    setId(nanoid(6));
   }, []);
+
+  const handleInputChange = useCallback(
+    (event: InputEvent | ChangeEvent<HTMLTextAreaElement>) => {
+      setValue(event.target.value);
+      handleChange && handleChange(event);
+    },
+    [handleChange]
+  );
 
   const handleFocus = useCallback(() => {
     setMessage("");
@@ -65,11 +91,16 @@ const Input: React.ForwardRefRenderFunction<InputHandles, InputProps> = (
     setState("none");
   }, []);
 
-  useImperativeHandle(ref, () => {
+  useImperativeHandle<InputHandles, InputHandles>(ref, () => {
     return {
+      handleInputChange,
       setMessage,
       setValue,
       setState,
+      setType,
+      type,
+      setDisabled,
+      value,
     };
   });
 
@@ -79,27 +110,51 @@ const Input: React.ForwardRefRenderFunction<InputHandles, InputProps> = (
       data-disabled={disabled}
       data-state={state}
       data-errored={!!message}
+      style={style}
     >
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && <label htmlFor={id!}>{label}</label>}
 
       <div className={styles.inputInnerWrapper}>
         {leftIcon && <div className={styles.leftIcon}>{leftIcon}</div>}
 
-        <input
-          id={label ? id : ""}
-          type={type}
-          style={{
-            paddingLeft: leftIcon ? `var(--size-400)` : "var(--size-200)",
-            paddingRight: rightIcon ? `var(--size-400)` : "var(--size-200)",
-          }}
-          value={value}
-          placeholder={placeholder}
-          disabled={disabled}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleInputChange}
-          {...props}
-        />
+        {variant === "input" && (
+          <input
+            id={id!}
+            type={type}
+            style={{
+              paddingLeft: leftIcon ? `var(--size-400)` : "var(--size-200)",
+              paddingRight: rightIcon ? `var(--size-400)` : "var(--size-200)",
+            }}
+            value={value}
+            placeholder={placeholder}
+            disabled={disabled}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleInputChange}
+            {...props}
+          />
+        )}
+
+        {variant === "textarea" && (
+          <textarea
+            id={id!}
+            style={{
+              paddingLeft: leftIcon ? `var(--size-400)` : "var(--size-200)",
+              paddingRight: rightIcon ? `var(--size-400)` : "var(--size-200)",
+            }}
+            value={value}
+            placeholder={placeholder}
+            disabled={disabled}
+            rows={10}
+            // @ts-ignore
+            onFocus={handleFocus}
+            // @ts-ignore
+            onBlur={handleBlur}
+            // @ts-ignore
+            onChange={handleInputChange}
+            {...props}
+          ></textarea>
+        )}
 
         {rightIcon && <div className={styles.rightIcon}>{rightIcon}</div>}
       </div>

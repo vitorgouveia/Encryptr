@@ -6,6 +6,8 @@ const tags = {
   text: "p",
   small: "small",
   h3: "h3",
+  h6: "h6",
+  h5: "h5",
 };
 
 type HeadingProps = HTMLAttributes<HTMLElement> & {

@@ -12,23 +12,43 @@ export class ROT implements ICryptography {
     this.skip = skip;
   }
 
+  private bruh(result: number): string {
+    if (result - alphabet.length - 1 > alphabet.length) {
+      return this.bruh(result - alphabet.length - 1);
+      // return alphabet[result - alphabet.length - 1];
+    }
+
+    return alphabet[result - alphabet.length - 1];
+  }
+
+  private calculateSkipAhead(currentIndex: number): string {
+    const indexToLastCharacterInAlphabet = alphabet.length - 1 - currentIndex;
+    const rest = this.skip - indexToLastCharacterInAlphabet;
+
+    if (rest > alphabet.length) {
+      return this.bruh(rest);
+    }
+
+    return alphabet[rest - 1];
+  }
+
   public async execute(value: string): Promise<string> {
     const arrayValue = [...value];
 
     const newValue = arrayValue.map((character) => {
-      const isUpperCase = character === character.toUpperCase();
-
-      const currentIndex = alphabet.indexOf(character.toLowerCase());
-
-      const skipBehind = alphabet[currentIndex - this.skip];
-
-      if (!skipBehind) {
-        const rest = this.skip - currentIndex;
-        const result = alphabet[alphabet.length - rest];
-        return isUpperCase ? result.toUpperCase() : result;
+      if (!alphabet.includes(character)) {
+        return character;
       }
 
-      return isUpperCase ? skipBehind.toUpperCase() : skipBehind;
+      const currentIndex = alphabet.indexOf(character);
+
+      const skipAhead = alphabet[currentIndex + this.skip];
+
+      if (!skipAhead) {
+        return this.calculateSkipAhead(currentIndex);
+      }
+
+      return skipAhead;
     });
 
     return newValue.join("");

@@ -7,6 +7,10 @@ const nextConfig = {
 
   basePath: isGithubPages ? `/${projectName}` : "",
   assetPrefix: isGithubPages ? `/${projectName}/` : "",
+
+  experimental: {
+    externalDir: true,
+  },
 };
 
 module.exports = nextConfig;

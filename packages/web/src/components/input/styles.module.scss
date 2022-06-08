@@ -7,14 +7,17 @@
   gap: 8px;
 
   --accent-color: var(--color-gray-100);
+  --border-accent-color: transparent;
 
   &:hover {
     --accent-color: var(--color-primary-500);
+    --border-accent-color: var(--accent-color);
   }
 
   &[data-disabled="true"] {
     cursor: not-allowed;
     --accent-color: var(--color-gray-800) !important;
+    --border-accent-color: var(--accent-color);
 
     * {
       cursor: not-allowed;
@@ -26,23 +29,27 @@
   }
 
   &[data-state="focused"] {
+    --border-accent-color: var(--accent-color);
     --accent-color: var(--color-primary-500);
 
-    .message {
-      display: none;
-    }
+    // .message {
+    //   display: none;
+    // }
   }
 
   &[data-state="error"] {
     --accent-color: var(--color-red-500);
+    --border-accent-color: var(--accent-color);
   }
 
   &[data-state="warning"] {
     --accent-color: var(--color-yellow-500);
+    --border-accent-color: var(--accent-color);
   }
 
   &[data-state="success"] {
     --accent-color: var(--color-green-500);
+    --border-accent-color: var(--accent-color);
   }
 
   label {
@@ -51,12 +58,29 @@
   }
 
   .inputInnerWrapper {
-    input {
+    textarea {
+      min-height: calc(var(--size-900) * 2);
+      max-height: calc(var(--size-900) * 6);
+      border-radius: var(--size-200) !important;
+
+      &:disabled {
+        resize: none;
+        cursor: not-allowed;
+        filter: opacity(50%);
+      }
+    }
+
+    input,
+    textarea {
+      resize: vertical;
+
+      width: 100%;
+
       font-size: var(--font-size-100);
       background: var(--color-gray-900);
 
       padding: var(--size-200);
-      border: 4px solid var(--accent-color);
+      border: 4px solid var(--border-accent-color);
       border-radius: var(--size-100);
 
       color: var(--color-gray-200);
@@ -86,6 +110,8 @@
   }
 
   .message {
+    height: 26px;
+
     font-size: var(--font-size-100);
     color: var(--accent-color);
   }
