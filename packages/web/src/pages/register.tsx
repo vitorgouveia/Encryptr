@@ -42,40 +42,43 @@ const Register: React.FC = () => {
     setFormFilled(false);
   };
 
-  const handleSubmit = useCallback(async (event: FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    async (event: FormEvent) => {
+      event.preventDefault();
 
-    if (!accountType.current) {
-      return;
-    }
-
-    const register = await handleRegister({
-      username: usernameInput.current?.value || "",
-      email: emailInput.current?.value || "",
-      password: passwordInput.current?.value || "",
-      type: accountType.current,
-    });
-    console.log(register);
-    if (register?.error) {
-      switch (register.error.field) {
-        case "username": {
-          usernameInput.current?.setState("error");
-          usernameInput.current?.setMessage(register.error.message);
-          break;
-        }
-
-        case "email": {
-          emailInput.current?.setState("error");
-          emailInput.current?.setMessage(register.error.message);
-          break;
-        }
+      if (!accountType.current) {
+        return;
       }
 
-      return;
-    }
+      const register = await handleRegister({
+        username: usernameInput.current?.value || "",
+        email: emailInput.current?.value || "",
+        password: passwordInput.current?.value || "",
+        type: accountType.current,
+      });
+      console.log(register);
+      if (register?.error) {
+        switch (register.error.field) {
+          case "username": {
+            usernameInput.current?.setState("error");
+            usernameInput.current?.setMessage(register.error.message);
+            break;
+          }
 
-    push("/dashboard");
-  }, []);
+          case "email": {
+            emailInput.current?.setState("error");
+            emailInput.current?.setMessage(register.error.message);
+            break;
+          }
+        }
+
+        return;
+      }
+
+      push("/dashboard");
+    },
+    [handleRegister, push]
+  );
 
   return (
     <>

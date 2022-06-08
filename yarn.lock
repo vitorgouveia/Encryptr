@@ -2409,6 +2409,8 @@ __metadata:
 "@encryptr/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@encryptr/core@workspace:packages/core"
+  dependencies:
+    typescript: ^4.7.3
   languageName: unknown
   linkType: soft
 

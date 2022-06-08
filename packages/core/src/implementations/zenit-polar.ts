@@ -10,7 +10,7 @@ const check = (
   keys: string[],
   index: number
 ) => {
-  const currentCharIndex = [...set].indexOf(character.toLowerCase());
+  const currentCharIndex = Array.from(set).indexOf(character.toLowerCase());
 
   const setOfChars = keys[index - 1];
 
@@ -19,7 +19,7 @@ const check = (
   if (!setOfChars) {
     if (!isLastPlace) {
       // this one is the first
-      let final = [...keys[index + 1]][currentCharIndex];
+      let final = Array.from(keys[index + 1])[currentCharIndex];
 
       keys.forEach((set2, j) => {
         if (j > index) {
@@ -36,13 +36,13 @@ const check = (
       return final;
     }
 
-    const result = [...keys[index + 1]][currentCharIndex];
+    const result = Array.from(keys[index + 1])[currentCharIndex];
 
     return result;
   }
 
   if (!isLastPlace) {
-    let final = [...setOfChars][currentCharIndex];
+    let final = Array.from(setOfChars)[currentCharIndex];
 
     keys.forEach((set2, j) => {
       if (j > index) {
@@ -59,7 +59,7 @@ const check = (
     return final;
   }
 
-  const result = [...setOfChars][currentCharIndex];
+  const result = Array.from(setOfChars)[currentCharIndex];
 
   return result;
 };
@@ -72,7 +72,7 @@ export class Zenit implements ICryptography {
   }
 
   public async execute(value: string): Promise<string> {
-    const arrayValue = [...value];
+    const arrayValue = Array.from(value);
 
     const result = arrayValue.map((character) => {
       const isUpperCase = character === character.toUpperCase();
@@ -101,20 +101,20 @@ export class Zenit implements ICryptography {
 
 export class DefaultZenitPolar implements ICryptography {
   public async execute(value: string): Promise<string> {
-    const arrayValue = [...value];
+    const arrayValue = Array.from(value);
 
     const result = arrayValue.map((character) => {
       const zenit = "zenit";
       const polar = "polar";
 
       if (zenit.includes(character)) {
-        const currentIndexInZenit = [...zenit].indexOf(character);
-        return [...polar][currentIndexInZenit];
+        const currentIndexInZenit = Array.from(zenit).indexOf(character);
+        return Array.from(polar)[currentIndexInZenit];
       }
 
       if (polar.includes(character)) {
-        const currentIndexInPolar = [...polar].indexOf(character);
-        return [...zenit][currentIndexInPolar];
+        const currentIndexInPolar = Array.from(polar).indexOf(character);
+        return Array.from(zenit)[currentIndexInPolar];
       }
 
       return character;

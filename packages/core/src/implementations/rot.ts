@@ -33,7 +33,8 @@ export class ROT implements ICryptography {
   }
 
   public async execute(value: string): Promise<string> {
-    const arrayValue = [...value];
+    // const arrayValue = [...value];
+    const arrayValue = Array.from(value);
 
     const newValue = arrayValue.map((character) => {
       if (!alphabet.includes(character)) {
