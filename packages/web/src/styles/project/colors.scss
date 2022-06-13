@@ -1,5 +1,5 @@
-$lightness-step: 10;
-$lightness-base: 7;
+$lightness-step: 11;
+$lightness-base: 8;
 
 $colors: (
   gray: (
@@ -29,10 +29,22 @@ $colors: (
     @for $i from 1 through 9 {
       $hue: map-get($properties, hue);
       $saturation: map-get($properties, saturation) + "%";
-      $lightness: $lightness-base + ($lightness-step * (9 - $i)) + "%";
 
-      // prettier-ignore
-      --color-#{$color + ""}-#{$i * 100}: hsl(#{$hue}, #{$saturation}, #{$lightness});
+      @if $color == gray {
+        @if $i == 8 {
+          $lightness: $lightness-base + (4 * (9 - $i)) + "%";
+          // prettier-ignore
+          --color-#{$color + ""}-#{$i * 100}: hsl(#{$hue}, #{$saturation}, #{$lightness});
+        } @else {
+          $lightness: $lightness-base + ($lightness-step * (9 - $i)) + "%";
+          // prettier-ignore
+          --color-#{$color + ""}-#{$i * 100}: hsl(#{$hue}, #{$saturation}, #{$lightness});
+        }
+      } @else {
+        $lightness: $lightness-base + ($lightness-step * (9 - $i)) + "%";
+        // prettier-ignore
+        --color-#{$color + ""}-#{$i * 100}: hsl(#{$hue}, #{$saturation}, #{$lightness});
+      }
     }
   }
 }

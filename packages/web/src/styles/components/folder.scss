@@ -1,0 +1,106 @@
+$folderColor: #70a1ff;
+$paperColor: #ffffff;
+
+.folder {
+  transition: all 0.2s ease-in;
+  padding-top: 10px;
+
+  &__back {
+    position: relative;
+    // width: 100px;
+    // height: 80px;
+    // transform: scale(0.5);
+    width: 42px;
+    height: 22px;
+    background: darken($folderColor, 8%);
+    border-radius: 0px 2px 2px 2px;
+
+    //The thing on the left top
+    &::after {
+      position: absolute;
+      bottom: 98%; //if 100% you can see a little gap on Chrome
+      left: 0;
+      content: "";
+      width: 30px;
+      height: 10px;
+      background: darken($folderColor, 8%);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .paper {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translate(-50%, 10%);
+      width: 70%;
+      height: 80%;
+      background: darken($paperColor, 20%);
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+
+      //make paper bigger and bigger
+
+      &:nth-child(2) {
+        background: darken($paperColor, 10%);
+        width: 80%;
+        height: 70%;
+      }
+
+      &:nth-child(3) {
+        background: darken($paperColor, 0%);
+        width: 90%;
+        height: 60%;
+      }
+    }
+
+    .folder__front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: $folderColor;
+      border-radius: 5px;
+      transform-origin: bottom;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  &:hover {
+    // transform: translateY(-8px);
+  }
+
+  &:hover .paper {
+    transform: translate(-50%, 0%);
+  }
+
+  //there are 2 parts for the front of folder
+  //one goes left and another goes right
+
+  &:hover .folder__front {
+    transform: skew(15deg) scaleY(0.6);
+  }
+
+  &:hover .right {
+    transform: skew(-15deg) scaleY(0.6);
+  }
+}
+
+[data-folder-parent] {
+  &:hover,
+  &:focus {
+    .folder {
+      // transform: translateY(-8px);
+    }
+
+    .paper {
+      transform: translate(-50%, 0%);
+    }
+
+    .folder__front {
+      transform: skew(15deg) scaleY(0.6);
+    }
+
+    .right {
+      transform: skew(-15deg) scaleY(0.6);
+    }
+  }
+}

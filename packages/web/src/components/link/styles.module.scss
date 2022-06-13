@@ -3,6 +3,12 @@
   font-weight: 400;
   font-size: var(--font-size-200);
 
+  &[data-disabled="true"] {
+    filter: opacity(50%);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
   &[data-active="true"] {
     color: var(--color-primary-400);
   }

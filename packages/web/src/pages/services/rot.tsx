@@ -12,10 +12,8 @@ import { ROT } from "@encryptr/core";
 import styles from "../../styles/pages/service/service.module.scss";
 
 const ROTService: React.FC = () => {
-  // const handle
   const [skip, setSkip] = useState(13);
   const [value, setValue] = useState("");
-  const [InputValue, setInputValue] = useState("");
   const ROTInput = useRef<InputHandles>(null);
   const ResultInput = useRef<InputHandles>(null);
 
@@ -48,7 +46,7 @@ const ROTService: React.FC = () => {
 
               setValue(await rot.execute(ROTInput.current?.value || ""));
             }}
-            placeholder="Range 0-"
+            placeholder="Range 0-∞"
           />
 
           <Input

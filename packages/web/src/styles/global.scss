@@ -1,6 +1,7 @@
 @use "./project/colors.scss";
 @use "./project/font-size.scss";
 @use "./project/size-scale.scss";
+@use "./components/folder.scss";
 
 * {
   margin: 0;
@@ -41,4 +42,33 @@ select,
 textarea {
   outline: none;
   border: none;
+}
+
+select {
+  width: max-content;
+
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+
+  background: transparent;
+  background-color: var(--color-gray-900);
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - var(--size-200));
+  background-position-y: 50%;
+
+  padding: var(--size-200);
+
+  font-size: var(--font-size-100);
+  // background: var(--color-gray-900);
+
+  border: 2px solid var(--color-gray-600);
+  border-radius: var(--size-100);
+
+  color: var(--color-gray-200);
+
+  &::placeholder {
+    color: var(--color-gray-600);
+  }
 }

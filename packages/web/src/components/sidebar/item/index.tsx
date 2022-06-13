@@ -11,6 +11,7 @@ type ItemProps = {
   title: string;
   icon: React.ReactNode;
   active?: boolean;
+  disabled?: boolean;
 
   dropdown?: React.ReactElement;
 };
@@ -21,6 +22,7 @@ export const Item: React.FC<ItemProps> = ({
   title,
   dropdown,
   active,
+  disabled,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -47,7 +49,12 @@ export const Item: React.FC<ItemProps> = ({
       {open && <div className={styles.dropdown}>{dropdown}</div>}
     </div>
   ) : (
-    <Link data-active={active} href={href} className={styles.item}>
+    <Link
+      active={active}
+      disabled={disabled}
+      href={href}
+      className={styles.item}
+    >
       {icon}
 
       <Heading variant="text">{title}</Heading>

@@ -7,16 +7,22 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
   label?: string;
   children?: React.ReactNode;
+  className?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
   label,
   children,
   variant,
+  className,
   ...props
 }) => {
   return (
-    <button data-variant={variant} className={styles.button} {...props}>
+    <button
+      data-variant={variant}
+      className={`${styles.button} ${className}`}
+      {...props}
+    >
       <strong>{label || children}</strong>
     </button>
   );

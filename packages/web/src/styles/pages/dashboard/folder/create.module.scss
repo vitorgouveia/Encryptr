@@ -1,0 +1,26 @@
+.contentInputContainer {
+  width: 100%;
+  padding: var(--size-300) 0;
+
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--size-200);
+
+  .textarea {
+    height: var(--base-height) !important;
+  }
+
+  .containerTextarea {
+    height: 100%;
+  }
+}
+
+.buttonRed {
+  background: var(--color-red-500) !important;
+
+  &:hover {
+    background: var(--color-red-700) !important;
+  }
+}

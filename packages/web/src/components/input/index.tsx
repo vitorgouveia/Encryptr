@@ -28,6 +28,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   variant?: "input" | "textarea";
   type?: Type;
   value?: string | number;
+  inputWrapperClassname?: string;
   handleInputChange?: (
     event: InputEvent | ChangeEvent<HTMLTextAreaElement>
   ) => void;
@@ -36,6 +37,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 export interface InputHandles {
   type: Type;
   value: string;
+  id: string | null;
 
   setState: Dispatch<SetStateAction<State>>;
   setValue: Dispatch<SetStateAction<string>>;
@@ -59,6 +61,7 @@ const Input: React.ForwardRefRenderFunction<InputHandles, InputProps> = (
     type: Type = "text",
     handleInputChange: handleChange,
     style,
+    inputWrapperClassname,
     ...props
   },
   ref
@@ -101,28 +104,29 @@ const Input: React.ForwardRefRenderFunction<InputHandles, InputProps> = (
       type,
       setDisabled,
       value,
+      id,
     };
   });
 
   return (
     <div
-      className={`${styles.inputWrapper} `}
+      className={`${styles.inputWrapper}`}
       data-disabled={disabled}
       data-state={state}
       data-errored={!!message}
       style={style}
     >
-      {label && <label htmlFor={id!}>{label}</label>}
+      {label && <label htmlFor={`input-${id!}`}>{label}</label>}
 
-      <div className={styles.inputInnerWrapper}>
+      <div className={`${styles.inputInnerWrapper} ${inputWrapperClassname}`}>
         {leftIcon && <div className={styles.leftIcon}>{leftIcon}</div>}
 
         {variant === "input" && (
           <input
-            id={id!}
+            id={`input-${id!}`}
             type={type}
             style={{
-              paddingLeft: leftIcon ? `var(--size-400)` : "var(--size-200)",
+              paddingLeft: leftIcon ? `var(--size-600)` : "var(--size-200)",
               paddingRight: rightIcon ? `var(--size-400)` : "var(--size-200)",
             }}
             value={value}
@@ -137,7 +141,7 @@ const Input: React.ForwardRefRenderFunction<InputHandles, InputProps> = (
 
         {variant === "textarea" && (
           <textarea
-            id={id!}
+            id={`input-${id!}`}
             style={{
               paddingLeft: leftIcon ? `var(--size-400)` : "var(--size-200)",
               paddingRight: rightIcon ? `var(--size-400)` : "var(--size-200)",

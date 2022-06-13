@@ -46,7 +46,7 @@ export const Brand: React.FC<BrandProps> = memo(
               id="paint0_linear_8_105"
               x1="-0.658932"
               y1="18.5083"
-              x2="33.3685j"
+              x2="33"
               y2="18.5083"
               gradientUnits="userSpaceOnUse"
             >
