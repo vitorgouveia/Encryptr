@@ -39,7 +39,9 @@ export const Sidebar: React.FC = () => {
     <nav className={styles.sidebar}>
       {!isLessThanDesktop && (
         <>
-          <Brand colors={defaultColorScheme} variant="full" />
+          <Link href="/dashboard">
+            <Brand colors={defaultColorScheme} variant="full" />
+          </Link>
 
           <section className={styles.profile}>
             <div className={styles.image}>

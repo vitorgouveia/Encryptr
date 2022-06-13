@@ -28,9 +28,8 @@ const MyData: React.FC = () => {
       let keys: string[] = [];
 
       for (const key in localStorage) {
-        keys.push(key);
-
         if (localStorage.hasOwnProperty(key) && key.includes("@encryptr")) {
+          keys.push(key);
           allStrings += localStorage[key];
         }
       }
@@ -49,11 +48,11 @@ const MyData: React.FC = () => {
   }, []);
 
   const handleGenerateAndDownloadUserData = useCallback(() => {
-    const filename = `${user?.username || "user"}-data.txt`;
+    const filename = `${user?.username || "user"}-data.json`;
 
     save({
       filename,
-      data: JSON.stringify(user),
+      data: JSON.stringify(user, null, 2),
     });
   }, [user]);
 

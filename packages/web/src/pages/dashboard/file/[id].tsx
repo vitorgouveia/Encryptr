@@ -44,6 +44,41 @@ const File: NextPage = () => {
 
   const KeyInput = useRef<InputHandles>(null);
 
+  // listen for height change on content input
+  useEffect(() => {
+    // prettier-ignore
+    const contentTextarea = document.querySelector(".textarea-resize") as HTMLTextAreaElement;
+    const previewTextarea = document.querySelector(
+      ".textarea-resize-inherit"
+    ) as HTMLTextAreaElement;
+
+    contentTextarea.setAttribute("style", "height: 300px !important");
+    previewTextarea.setAttribute("style", "height: 300px !important");
+
+    const textareaObserver = new ResizeObserver((entries) => {
+      const [
+        {
+          borderBoxSize: [{ blockSize }],
+        },
+      ] = entries;
+
+      contentTextarea.setAttribute(
+        "style",
+        `height: ${blockSize}px !important`
+      );
+      previewTextarea.setAttribute(
+        "style",
+        `height: ${blockSize}px !important`
+      );
+    });
+
+    textareaObserver.observe(contentTextarea!);
+
+    return () => {
+      textareaObserver.unobserve(contentTextarea!);
+    };
+  }, []);
+
   // load the file
   useEffect(() => {
     const file = loadFileByID(router.query.id);
@@ -219,9 +254,9 @@ const File: NextPage = () => {
 
       <main className={styles.container}>
         <header>
-          <Heading weight="bold" variant="title">
+          {/* <Heading weight="bold" variant="title">
             Create new File
-          </Heading>
+          </Heading> */}
         </header>
 
         <section>
@@ -451,6 +486,7 @@ const File: NextPage = () => {
             <Input
               ref={ContentInput}
               style={{ width: "100%" }}
+              className="textarea-resize"
               label="File Content"
               variant="textarea"
               placeholder=""
@@ -504,7 +540,7 @@ const File: NextPage = () => {
             <Input
               ref={PreviewInput}
               inputWrapperClassname={createStyles.containerTextarea}
-              className={createStyles.textarea}
+              className="textarea-resize-inherit"
               style={{ width: "100%" }}
               label="Preview"
               disabled

@@ -1,8 +1,9 @@
 import NextLink from "next/link";
+import { AnchorHTMLAttributes } from "react";
 
 import styles from "./styles.module.scss";
 
-type LinkProps = {
+type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
   label?: string;
   children: React.ReactNode;
@@ -20,9 +21,11 @@ export const Link: React.FC<LinkProps> = ({
   global = false,
   className = "",
   disabled = false,
+  ...props
 }) => {
   return global ? (
     <a
+      {...props}
       data-active={active}
       href={href}
       target="_blank"
@@ -34,6 +37,7 @@ export const Link: React.FC<LinkProps> = ({
   ) : (
     <NextLink href={disabled ? "" : href}>
       <a
+        {...props}
         data-active={active}
         data-disabled={disabled}
         // tabIndex={disabled ? -1 : 0}

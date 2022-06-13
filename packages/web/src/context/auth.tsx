@@ -81,6 +81,7 @@ type AuthContextProps = {
     customFile?: File
   ) => File;
   handleUpdateFileDetails: (id: string, details: ServiceDetails) => File;
+  handleUpdateFilesOrder: (files: File[]) => void;
 };
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -417,12 +418,34 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     setCurrentUser(null);
   }, []);
 
+  const handleUpdateFilesOrder = useCallback(
+    (files: File[]) => {
+      const newFiles = files;
+
+      const newUser: User = {
+        ...currentUser!,
+        files: newFiles,
+      };
+
+      const newUsers = [
+        ...(users.filter((user) => user.id !== currentUser!.id) || []),
+        newUser,
+      ];
+
+      setUsers(newUsers);
+
+      localStorage.setItem("@encryptr:users", JSON.stringify(newUsers));
+    },
+    [currentUser, users]
+  );
+
   return (
     <AuthContext.Provider
       value={{
         user: currentUser,
         handleRegister,
         loadFileByID,
+        handleUpdateFilesOrder,
         handleLogin,
         users,
         handleLogout,

@@ -1,6 +1,13 @@
 import dynamic from "next/dynamic";
 import { FiSearch, FiFile, FiFolder } from "react-icons/fi";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+  ResponderProvided,
+} from "react-beautiful-dnd";
 
 const Head = dynamic(() => import("../../modules/seo/head"));
 import { Sidebar } from "../../components/sidebar";
@@ -16,7 +23,26 @@ import { AuthContext } from "../../context/auth";
 
 const Dashboard: React.FC = () => {
   const { push } = useRouter();
-  const { user, handleCreateFile } = useContext(AuthContext);
+  const { user, handleCreateFile, handleUpdateFilesOrder } =
+    useContext(AuthContext);
+
+  const [files, setFiles] = useState(user?.files || []);
+
+  useEffect(() => {
+    setFiles(user?.files || []);
+  }, [user?.files]);
+
+  const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
+    if (!result.destination) return;
+
+    const items = Array.from(files!);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination?.index!, 0, reorderedItem);
+    setFiles(items);
+
+    // update user files order
+    handleUpdateFilesOrder(items);
+  };
 
   return (
     <>
@@ -75,36 +101,54 @@ const Dashboard: React.FC = () => {
             <Heading variant="small" weight="bold">
               Files
             </Heading>
-            <ul>
-              {user?.files.map(({ id, label }) => {
-                return (
-                  <li key={id}>
-                    <Link
-                      href={`/dashboard/file/${id}`}
-                      className={styles.file}
-                    >
-                      <FiFile size={32} />
-                      <Heading variant="small">
-                        {label.slice(0, 10) + "..." || "No title yet :/"}
-                      </Heading>
-                    </Link>
-                  </li>
-                );
-              })}
-              <li>
-                <button
-                  onClick={() => {
-                    const file = handleCreateFile();
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <Droppable direction="horizontal" droppableId="files">
+                {(provided) => (
+                  <ul {...provided.droppableProps} ref={provided.innerRef}>
+                    {files?.map(({ id, label }, index) => {
+                      return (
+                        <Draggable draggableId={id} key={id} index={index}>
+                          {(provided) => (
+                            <li
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                            >
+                              <Link
+                                draggable={true}
+                                href={`/dashboard/file/${id}`}
+                                className={styles.file}
+                              >
+                                <FiFile size={32} />
+                                <Heading variant="small">
+                                  {label.slice(0, 10) + "..." ||
+                                    "No title yet :/"}
+                                </Heading>
+                              </Link>
+                            </li>
+                          )}
+                        </Draggable>
+                      );
+                    })}
 
-                    push(`/dashboard/file/${file.id}`);
-                  }}
-                  className={styles.create}
-                >
-                  <FiFolder size={32} />
-                  <Heading variant="small">Create new +</Heading>
-                </button>
-              </li>
-            </ul>
+                    {provided.placeholder}
+
+                    <li>
+                      <button
+                        onClick={() => {
+                          const file = handleCreateFile();
+                          push(`/dashboard/file/${file.id}`);
+                        }}
+                        className={styles.create}
+                      >
+                        <FiFolder size={32} />
+                        <Heading variant="small">Create new +</Heading>
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
         </section>
       </main>
